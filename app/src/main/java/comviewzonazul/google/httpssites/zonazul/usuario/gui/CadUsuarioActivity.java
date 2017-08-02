@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-
 import comviewzonazul.google.httpssites.zonazul.R;
 import comviewzonazul.google.httpssites.zonazul.usuario.dao.UsuarioDAO;
 import comviewzonazul.google.httpssites.zonazul.usuario.dominio.Usuario;
@@ -18,7 +17,6 @@ public class CadUsuarioActivity extends AppCompatActivity {
     private UsuarioDAO usuarioDAO;
     private Usuario usuario;
     private int idusuario;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class CadUsuarioActivity extends AppCompatActivity {
 
     public void fazerCadastro(String nome,String login,String senha){
         Context context = getApplicationContext();
-
         Usuario usuario = new Usuario(nome,login,senha);
         UsuarioNegocio usuarioNegocio = new UsuarioNegocio(context,usuario);
 

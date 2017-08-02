@@ -1,17 +1,10 @@
 package comviewzonazul.google.httpssites.zonazul.usuario.negocio;
 
-import android.content.ContentValues;
 import android.content.Context;
-
 import comviewzonazul.google.httpssites.zonazul.usuario.dao.UsuarioDAO;
 import comviewzonazul.google.httpssites.zonazul.usuario.dominio.Usuario;
 
-/**
- * Created by Augusto on 22/07/17.
- */
-
 public class UsuarioNegocio {
-
     public UsuarioDAO usuarioDAO;
     public Usuario usuario;
 
@@ -20,8 +13,8 @@ public class UsuarioNegocio {
         usuario = usuario_;
     }
 
-    public boolean retornarUsuario(String login, String senha){ // FAZER COM QUE ESSA FUNÇÃO RETORNE TUDO INCLUSIVE O ID
-        if(usuarioDAO.existeUsuario(login,senha) == null){ //nao existe usuario
+    public boolean retornarUsuario(String login, String senha){
+        if(usuarioDAO.existeUsuario(login,senha) == null){
             return false;
         }
         else{
@@ -29,6 +22,9 @@ public class UsuarioNegocio {
         }
     }
 
+    public Usuario pegaUsuario(String login, String senha){
+        return usuarioDAO.existeUsuario(login,senha);
+    }
 
     public boolean retornarUsuarioLogin(Usuario usuario){
         String login = usuario.getLogin();
@@ -46,8 +42,10 @@ public class UsuarioNegocio {
     }
 
     public boolean verificaCliente(){
-        usuario.set_id(usuarioDAO.retornarId(usuario.getLogin()));
-        if(usuarioDAO.existeCliente(usuario.get_id())){
+        String login = usuario.getLogin();
+        int id = usuarioDAO.retornarId(login);
+        usuario.set_id(id);
+        if(usuarioDAO.existeCliente(id)){
             return true;
         }else{
             return false;

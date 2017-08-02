@@ -17,11 +17,6 @@ public class EscolhaPerfilActivity extends AppCompatActivity {
     private static final String PREFERENCE_NAME = "LoginActivityPreferences";
     private Usuario usuario = new Usuario() ;
 
-
-    // ESCOLHAPERFILACTIVITY
-    // USUARIONEGOCIO
-    // USUARIODAO
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +29,7 @@ public class EscolhaPerfilActivity extends AppCompatActivity {
     public void cliente(View view){
         Context context = getApplicationContext();
         UsuarioNegocio usuarioNegocio = new UsuarioNegocio(context,usuario);
-        if (usuarioNegocio.verificaCliente()){
+        if ((usuarioNegocio.verificaCliente())){
             Intent intent = new Intent();
             intent.setClass(this, PrincipalClienteActivity.class);
             startActivity(intent);
@@ -58,6 +53,4 @@ public class EscolhaPerfilActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 }

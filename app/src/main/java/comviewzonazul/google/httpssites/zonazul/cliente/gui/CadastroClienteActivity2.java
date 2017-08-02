@@ -7,16 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import comviewzonazul.google.httpssites.zonazul.R;
 import comviewzonazul.google.httpssites.zonazul.cliente.dominio.Cliente;
 import comviewzonazul.google.httpssites.zonazul.cliente.dominio.Endereco;
 import comviewzonazul.google.httpssites.zonazul.cliente.negocio.ClienteNegocio;
-import comviewzonazul.google.httpssites.zonazul.usuario.dao.UsuarioDAO;
 import comviewzonazul.google.httpssites.zonazul.usuario.dominio.Usuario;
-import comviewzonazul.google.httpssites.zonazul.usuario.gui.CadUsuarioActivity;
 import comviewzonazul.google.httpssites.zonazul.usuario.gui.EscolhaPerfilActivity;
-import comviewzonazul.google.httpssites.zonazul.usuario.gui.LoginActivity;
 import comviewzonazul.google.httpssites.zonazul.usuario.negocio.UsuarioNegocio;
 import util.Mensagem;
 
@@ -37,7 +33,6 @@ public class CadastroClienteActivity2 extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
         login_usuario = preferences.getString("LOGIN", null);
         senha_usuario = preferences.getString("SENHA", null);
-
         context = getApplicationContext();
         txt_email = (EditText) findViewById(R.id.txt_email);
         txt_cep = (EditText) findViewById(R.id.txt_cep);
@@ -67,6 +62,7 @@ public class CadastroClienteActivity2 extends AppCompatActivity {
             clienteNegocio.cadastro();
             return true;
         }else{
+            Mensagem.Msg(this, getString(R.string.mensagem_erro));
             return false;
         }
     }
@@ -84,6 +80,7 @@ public class CadastroClienteActivity2 extends AppCompatActivity {
 
     public void cadastro(View view){
         if (validacoes()){
+            cadastroCliente();
             Intent intent = new Intent();
             intent.setClass(this, EscolhaPerfilActivity.class);
             startActivity(intent);

@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-
 import comviewzonazul.google.httpssites.zonazul.R;
-
 import comviewzonazul.google.httpssites.zonazul.usuario.dominio.Usuario;
 import comviewzonazul.google.httpssites.zonazul.usuario.negocio.UsuarioNegocio;
 import util.Mensagem;
-
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edtUsuario, edtSenha;
@@ -30,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
         edtUsuario   = (EditText) findViewById(R.id.login_edtUsuario);
         edtSenha     = (EditText) findViewById(R.id.login_edtSenha);
         ckbConectado = (CheckBox) findViewById(R.id.login_ckbConectado);
-
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
         boolean conectado             = preferences.getBoolean(MANTER_CONECTADO, false);
         if (conectado){
@@ -41,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     public void cadastro(View view){
         startActivity(new Intent(this, CadUsuarioActivity.class));
         finish();
-        //setContentView(R.layout.activity_cad_usuario);
     }
 
     public void logar(View view){
@@ -57,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             edtSenha.setError(getString(R.string.login_valSenha));
         }
         if(validacao) {
-            //logar
             Usuario user = new Usuario(usuario, senha);
             Context context = getApplicationContext();
             usuarioNegocio = new UsuarioNegocio(context, user);
@@ -84,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
 
     private void ChamarMainActivity(){
         startActivity(new Intent(this, EscolhaPerfilActivity.class));
